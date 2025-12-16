@@ -1,13 +1,17 @@
-Bitboard = {
-  empty:          Long(0x0000000000000000n),
-  all:            Long(0xFFFFFFFFFFFFFFFFn),
-  center:         Long(0x0000001818000000n),
+import Long from "./Long.js";
 
-  firstRank:      Long(0x00000000000000FFn),
-  lastRank:       Long(0xFF00000000000000n),
+const Bitboard = {
+  empty: new Long(0x0000000000000000n),
+  all: new Long(0xffffffffffffffffn),
+  center: new Long(0x0000001818000000n),
 
-  lightSquares:   Long(0x55AA55AA55AA55AAn),
-  darkSquares:    Long(0xAA55AA55AA55AA55n),
+  firstRank: new Long(0x00000000000000ffn),
+  lastRank: new Long(0xff00000000000000n),
 
-  count: Long.bitCount(a)
-}
+  lightSquares: new Long(0x55aa55aa55aa55aan),
+  darkSquares: new Long(0xaa55aa55aa55aa55n),
+
+  count: (a) => Long.bitCount(a),
+};
+
+export default Bitboard

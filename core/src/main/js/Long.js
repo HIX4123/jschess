@@ -1,11 +1,12 @@
-class Long {
+export default class Long {
     constructor(long) {
-        this.upper = Number((long >> 32) & 0xFFFFFFFFn)
+        this.upper = Number((long >> 32n) & 0xFFFFFFFFn)
         this.lower = Number(long & 0xFFFFFFFFn)
     }
 
-    static popCount(a) {
-        return this.popCount(a.upper) + this.popCount(a.lower)
+    static bitCount(a) {
+        a = new Long(a)
+        return this.popCount32(a.upper) + this.popCount32(a.lower)
     }
 
     static popCount32(a) {

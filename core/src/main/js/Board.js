@@ -1,11 +1,15 @@
+import Bitboard from "./Bitboard.js"
+
 // Chess board representation
 
-class Board {
+export default class Board {
     constructor(occupied, byColor, byRole) {
         this.occupied = occupied
         this.byColor = byColor
         this.byRole = byRole
     }
-
-    nbPieces = this.occupied.count
+    
+    get nbPieces() {
+        return Bitboard.count(this.occupied)
+    }
 }
