@@ -1,4 +1,5 @@
 import Long from "./Long.js";
+import Square from "./Square.js";
 
 const Bitboard = {
   empty: new Long(0x0000000000000000n),
@@ -11,6 +12,7 @@ const Bitboard = {
   lightSquares: new Long(0x55aa55aa55aa55aan),
   darkSquares: new Long(0xaa55aa55aa55aa55n),
 
+  contains: (a, square) => (a & (1n << Square.value(square))) != 0n,
   count: (a) => Long.bitCount(a),
 };
 

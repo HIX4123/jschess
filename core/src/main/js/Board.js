@@ -12,4 +12,8 @@ export default class Board {
     get nbPieces() {
         return Bitboard.count(this.occupied)
     }
+
+    isOccupied(s) {
+        return Bitboard.contains(this.occupied, s)
+    }
 }
