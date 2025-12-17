@@ -4,17 +4,17 @@ import Bitboard from "./Bitboard.js"
 
 export default class Board {
     constructor(occupied, byColor, byRole) {
-        this.occupied = occupied
+        this.occupied = new Bitboard(occupied)
         this.byColor = byColor
         this.byRole = byRole
     }
     
     get nbPieces() {
-        return Bitboard.count(this.occupied)
+        return this.occupied.count
     }
 
     isOccupied(s) {
-        return Bitboard.contains(this.occupied, s)
+        return this.occupied.contains(s)
     }
 
     contains(...args) {
@@ -30,7 +30,9 @@ export default class Board {
     piece(...args) {
         if (args.length == 1) {
             let [p] = args
-            return this.piece()
+            return this.piece(p.color, p.role)
+        } else if (args.length == 2) {
+            return this.byColor.get(color) & this.byRole(role)
         }
     }
 }

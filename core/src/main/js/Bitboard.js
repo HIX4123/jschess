@@ -1,19 +1,22 @@
 import Long from "./Long.js";
 import Square from "./Square.js";
 
-const Bitboard = {
-  empty: new Long(0x0000000000000000n),
-  all: new Long(0xffffffffffffffffn),
-  center: new Long(0x0000001818000000n),
+export default class Bitboard {
 
-  firstRank: new Long(0x00000000000000ffn),
-  lastRank: new Long(0xff00000000000000n),
+  constructor(value) {
+    this.value = value
+  }
 
-  lightSquares: new Long(0x55aa55aa55aa55aan),
-  darkSquares: new Long(0xaa55aa55aa55aa55n),
+  static empty = new Long(0x0000000000000000n)
+  static all = new Long(0xffffffffffffffffn)
+  static center = new Long(0x0000001818000000n)
 
-  contains: (a, square) => (a & (1n << Square.value(square))) != 0n,
-  count: (a) => Long.bitCount(a),
-};
+  static firstRank = new Long(0x00000000000000ffn)
+  static lastRank = new Long(0xff00000000000000n)
 
-export default Bitboard
+  static lightSquares = new Long(0x55aa55aa55aa55aan)
+  static darkSquares = new Long(0xaa55aa55aa55aa55n)
+
+  contains(square) { return (this.value & (1n << Square.value(square))) != 0n}
+  get count() { return Long.bitCount(this.value) }
+}
