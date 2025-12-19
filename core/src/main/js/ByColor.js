@@ -4,5 +4,5 @@ export default class ByColor {
         this.black = black
     }
 
-    get(color) {return color.white ? this.white : this.black}
+    get(color) { console.log(color.white); return color.white ? this.white : this.black }
 }

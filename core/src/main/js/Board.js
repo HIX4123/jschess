@@ -1,10 +1,8 @@
-import Bitboard from "./Bitboard.js"
-
 // Chess board representation
 
 export default class Board {
     constructor(occupied, byColor, byRole) {
-        this.occupied = new Bitboard(occupied)
+        this.occupied = occupied
         this.byColor = byColor
         this.byRole = byRole
     }
@@ -32,7 +30,10 @@ export default class Board {
             let [p] = args
             return this.piece(p.color, p.role)
         } else if (args.length == 2) {
-            return this.byColor.get(color) & this.byRole(role)
+            let [color, role] = args
+            console.log(color, role.forsyth)
+            console.log(this.byColor.get(color), this.byRole.get(role))
+            return this.byColor.get(color) & this.byRole.get(role)
         }
     }
 }
