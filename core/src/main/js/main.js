@@ -3,7 +3,7 @@ import Board from "./Board.js";
 import ByColor from "./ByColor.js";
 import ByRole from "./ByRole.js";
 import Color from "./Color.js";
-import { Pawn } from "./Role.js";
+import * as Role from "./Role.js";
 
 let test = new Board(
     new Bitboard(0xffff00000000ffffn),
@@ -19,9 +19,9 @@ let test = new Board(
         new Bitboard(0x0800000000000008n),
         new Bitboard(0x1000000000000010n)
     )
-)
+);
 
-// console.log(test.nbPieces)
-// console.log(test.isOccupied(32n))
-console.log(Pawn.forsyth)
-console.log(test.contains(Color.White, Pawn))
+// Color 클래스 기능 작동 확인
+console.log("test.nbPieces:", test.nbPieces);
+console.log("test.isOccupied(32n):", test.isOccupied(32n));
+console.log("test.contains(Color.White, Role.Rook):", test.contains(Color.White, Role.Rook));

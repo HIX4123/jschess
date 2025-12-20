@@ -1,44 +1,20 @@
 export default class Role {
 
+    constructor(forsyth) {
+        this.forsyth = forsyth;
+    }
     get forsythUpper() { return this.forsyth.toUpperCase(); }
-    
+
 
 }
 
-class PromotableRole extends Role { }
+class PromotableRole extends Role { constructor() { super(); } }
 
-export class King extends PromotableRole {
-    constructor() {
-        this.forsyth = 'k'
-    }
-}
+export const King = new Role('k');
+export const Queen = new PromotableRole('q');
+export const Rook = new PromotableRole('r');
+export const Bishop = new PromotableRole('b');
+export const Knight = new PromotableRole('n');
+export const Pawn = new Role('p');
 
-export class Queen extends PromotableRole {
-    constructor() {
-        this.forsyth = 'q'
-    }
-}
-
-export class Rook extends PromotableRole {
-    constructor() {
-        this.forsyth = 'r'
-    }
-}
-
-export class Bishop extends PromotableRole {
-    constructor() {
-        this.forsyth = 'b'
-    }
-}
-
-export class Knight extends PromotableRole {
-    constructor() {
-        this.forsyth = 'n'
-    }
-}
-
-export class Pawn extends PromotableRole {
-    constructor() {
-        this.forsyth = 'p'
-    }
-}
+Object.freeze({ King, Queen, Rook, Bishop, Knight, Pawn})

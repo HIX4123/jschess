@@ -2,38 +2,36 @@
 
 export default class Board {
     constructor(occupied, byColor, byRole) {
-        this.occupied = occupied
-        this.byColor = byColor
-        this.byRole = byRole
+        this.occupied = occupied;
+        this.byColor = byColor;
+        this.byRole = byRole;
     }
-    
+
     get nbPieces() {
-        return this.occupied.count
+        return this.occupied.count;
     }
 
     isOccupied(s) {
-        return this.occupied.contains(s)
+        return this.occupied.contains(s);
     }
 
     contains(...args) {
         if (args.length == 1) {
             let [p] = args;
-            return this.piece(p).length > 0;
+            return this.piece(p).nonEmpty;
         } else if (args.length == 2) {
-            let [color, role] = args
-            return this.piece(color, role).length > 0
+            let [color, role] = args;
+            return this.piece(color, role).nonEmpty;
         }
     }
 
     piece(...args) {
         if (args.length == 1) {
-            let [p] = args
-            return this.piece(p.color, p.role)
+            let [p] = args;
+            return this.piece(p.color, p.role);
         } else if (args.length == 2) {
-            let [color, role] = args
-            console.log(color, role.forsyth)
-            console.log(this.byColor.get(color), this.byRole.get(role))
-            return this.byColor.get(color) & this.byRole.get(role)
+            let [color, role] = args;
+            return this.byColor.get(color).and(this.byRole.get(role))?? Bitboard.empty;
         }
     }
 }
