@@ -1,5 +1,5 @@
-const Square = {
-    value: (s) => s,
+export default class Square {
+    constructor(value) {
+        this.value = value;
+    }
 }
-
-export default Square

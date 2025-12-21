@@ -8,7 +8,7 @@ export default class Role {
 
 }
 
-class PromotableRole extends Role { constructor() { super(); } }
+class PromotableRole extends Role { constructor(forsyth) { super(forsyth); } }
 
 export const King = new Role('k');
 export const Queen = new PromotableRole('q');

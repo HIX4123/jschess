@@ -21,6 +21,7 @@ export default class Board {
             return this.piece(p).nonEmpty;
         } else if (args.length == 2) {
             let [color, role] = args;
+            console.log(color, role);
             return this.piece(color, role).nonEmpty;
         }
     }

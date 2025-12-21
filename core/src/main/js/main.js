@@ -4,6 +4,7 @@ import ByColor from "./ByColor.js";
 import ByRole from "./ByRole.js";
 import Color from "./Color.js";
 import * as Role from "./Role.js";
+import Square from "./Square.js";
 
 let test = new Board(
     new Bitboard(0xffff00000000ffffn),
@@ -23,5 +24,5 @@ let test = new Board(
 
 // Color 클래스 기능 작동 확인
 console.log("test.nbPieces:", test.nbPieces);
-console.log("test.isOccupied(32n):", test.isOccupied(32n));
+console.log("test.isOccupied(new Square(32)):", test.isOccupied(new Square(32)));
 console.log("test.contains(Color.White, Role.Rook):", test.contains(Color.White, Role.Rook));

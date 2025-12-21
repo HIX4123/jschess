@@ -3,12 +3,20 @@ import Square from "./Square.js";
 
 export default class Bitboard {
 
-  constructor(value) {
-    this.value = value;
+  constructor(...args) {
+    if (args.length == 1) {
+      let [long] = args
+      this.upper = Number((long >> 32n) & 0xFFFFFFFFn);
+      this.lower = Number(long & 0xFFFFFFFFn);
+    } else if (args.length == 2) {
+      let [upper, lower] = args
+      this.upper = upper
+      this.lower = lower
+    }
   }
 
   get nonEmpty() {
-    return this.value.nonEmpty
+    return this.upper != 0 || this.lower != 0;
   }
 
   static empty = new Bitboard(0x0000000000000000n);
@@ -21,8 +29,14 @@ export default class Bitboard {
   static lightSquares = new Bitboard(0x55aa55aa55aa55aan);
   static darkSquares = new Bitboard(0xaa55aa55aa55aa55n);
 
-  and(o) { return new Bitboard(this.value.and(o.value)); }
+  and(o) { return new Bitboard(this.upper & o.upper, this.lower & o.lower); }
 
-  contains(square) { return (this.value & (1n << Square.value(square))) != 0n; }
-  get count() { return Long.bitCount(this.value); }
+  contains(square) {
+    return square.value >= 32
+      ? (this.upper & (1 << (square.value - 32))) != 0
+      : (this.lower & (1 << square.value)) != 0;
+  }
+  get count() { return Long.bitCount(this); }
+
+  toString() { return `0x${this.upper.toString(16).padStart(8, '0').toUpperCase()}${this.lower.toString(16).padStart(8, '0').toUpperCase()}`; }
 }

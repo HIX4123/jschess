@@ -1,24 +1,6 @@
 export default class Long {
-    constructor(long) {
-        this.upper = Number((long >> 32n) & 0xFFFFFFFFn);
-        this.lower = Number(long & 0xFFFFFFFFn);
-
-    }
-
-    get value() {
-        return (BigInt(this.upper) << 32n) | BigInt(this.lower);
-    }
-
-    get nonEmpty() {
-        return this.upper != 0 || this.lower != 0;
-    }
-
-    and(o) {
-        return (BigInt(this.upper & o.upper) << 32n) | BigInt(this.lower & o.lower);
-    }
 
     static bitCount(a) {
-        a = new Long(a);
         return this.popCount32(a.upper) + this.popCount32(a.lower);
     }
 
@@ -30,5 +12,5 @@ export default class Long {
         a = a + (a >>> 16);
         return a & 0x3F;
     }
-
+    
 }
