@@ -51,6 +51,7 @@ export default class Board {
             return this.piece(p.color, p.role);
         } else if (args.length == 2) {
             let [color, role] = args;
+            return this.byColor.get(color).and(this.byRole.get(role))?? Bitboard.empty;
         }
     }
 }

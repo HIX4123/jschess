@@ -16,7 +16,7 @@ export default class Bitboard {
   }
 
   get nonEmpty() {
-    return this.upper != 0 || this.lower != 0;
+    return !(this.upper == 0 && this.lower == 0);
   }
 
   static empty = new Bitboard(0x0000000000000000n);
