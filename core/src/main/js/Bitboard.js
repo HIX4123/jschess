@@ -38,5 +38,22 @@ export default class Bitboard {
   }
   get count() { return Long.bitCount(this); }
 
-  toString() { return `0x${this.upper.toString(16).padStart(8, '0').toUpperCase()}${this.lower.toString(16).padStart(8, '0').toUpperCase()}`; }
+  toBitString() {
+    const hi = this.upper.toString(2).padStart(32, '0');
+    const lo = this.lower.toString(2).padStart(32, '0');
+    return hi + lo; // length = 64
+  }
+  toString() {
+    const bits = this.toBitString();
+    let out = '';
+
+    for (let rank = 7; rank >= 0; rank--) {
+      const start = rank * 8;
+      const row = bits.slice(start, start + 8);
+      out += row + '\n';
+    }
+
+    return out.trimEnd();
+  }
+
 }

@@ -26,6 +26,7 @@ let test = new Board(
 console.log("test.nbPieces:", test.nbPieces);
 console.log("test.isOccupied(new Square(32)):", test.isOccupied(new Square(32)));
 console.log("test.contains(Color.White, Role.Rook):", test.contains(Color.White, Role.Rook));
+console.log(`test.occupied.toString():\n${new Bitboard(0x000202020202027n).toString()}`);
 
 // Square 클래스 기능 작동 확인
 let square = new Square(37);

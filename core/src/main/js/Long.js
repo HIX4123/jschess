@@ -1,5 +1,9 @@
 export default class Long {
 
+    static contains(l, s) {
+        
+    }
+
     static bitCount(a) {
         return this.popCount32(a.upper) + this.popCount32(a.lower);
     }
