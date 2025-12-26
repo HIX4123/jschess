@@ -1,37 +1,9 @@
-import Bitboard from "./Bitboard.js";
-import Board from "./Board.js";
-import ByColor from "./ByColor.js";
-import ByRole from "./ByRole.js";
-import Color from "./Color.js";
-import * as Role from "./Role.js";
-import Square from "./Square.js";
+import Attacks from './bitboard/Attacks.js';
 
-let test = new Board(
-    new Bitboard(0xffff00000000ffffn),
-    new ByColor(
-        new Bitboard(0x000000000000ffffn),
-        new Bitboard(0xffff000000000000n)
-    ),
-    new ByRole(
-        new Bitboard(0x00ff00000000ff00n),
-        new Bitboard(0x4200000000000042n),
-        new Bitboard(0x2400000000000024n),
-        new Bitboard(0x8100000000000081n),
-        new Bitboard(0x0800000000000008n),
-        new Bitboard(0x1000000000000010n)
-    )
-);
+new Attacks();
 
-// Board 클래스 기능 작동 확인
-console.log("test.nbPieces:", test.nbPieces);
-console.log("test.isOccupied(new Square(32)):", test.isOccupied(new Square(32)));
-console.log("test.contains(Color.White, Role.Rook):", test.contains(Color.White, Role.Rook));
-console.log(`test.occupied.toString():\n${new Bitboard(0x000202020202027n).toString()}`);
+const formatted = (field) => [...Attacks[field]].map((b) => '0x' + b.toString(16).padStart(16, '0'));
 
-// Square 클래스 기능 작동 확인
-let square = new Square(37);
-console.log("square.prevRank(Color.White):", square.prevRank(Color.White).value);
-console.log("square.prevRank(Color.Black):", square.prevRank(Color.Black).value);
-console.log("square.isLight:", square.isLight);
-console.log("square.asChar:", square.asChar);
-console.log("square.key:", square.key);
+console.log(`RANKS:\n${formatted('RANKS').join(',\n')}`);
+console.log(`FILES:\n${formatted('FILES').join(',\n')}`);
+console.log(`BETWEEN:\n${formatted('BETWEEN').join(',\n')}`);
